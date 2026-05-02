@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title><%= alumno ? 'Editar' : 'Agregar' %> Alumno</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= alumno ? 'Modificar Datos' : 'Registrar Nuevo Alumno' %></h1>
+        
+        <form action="/guardar" method="POST">
+            <div class="form-group">
+                <label>Clave:</label>
+                <input type="text" name="clave" value="<%= alumno ? alumno.clave : '' %>" required <%= alumno ? 'readonly' : '' %>>
+            </div>
+
+            <div class="form-group">
+                <label>Nombre Completo:</label>
+                <input type="text" name="nombre" value="<%= alumno ? alumno.nombre : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Año (1, 2 o 3):</label>
+                <input type="number" name="anio" min="1" max="3" value="<%= alumno ? alumno.anio : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Grupo (Ej: 1A, 2B):</label>
+                <input type="text" name="grupo" value="<%= alumno ? alumno.grupo : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Tutor:</label>
+                <input type="text" name="tutor" value="<%= alumno ? alumno.tutor : '' %>" required>
+            </div>
+
+            <div class="form-group">
+                <label>Materias (separadas por coma):</label>
+                <textarea name="materias" required><%= alumno ? alumno.materias : '' %></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-add">Guardar Cambios</button>
+                <a href="/" class="btn btn-edit" style="background-color: #6c757d;">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
