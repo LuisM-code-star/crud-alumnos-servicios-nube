@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Control Escolar - Alumnos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema de Registro de Alumnos</h1>
+        
+        <div class="actions">
+            <form action="/" method="GET" class="search-box">
+                <input type="text" name="busca" placeholder="Buscar...">
+                <select name="filtro">
+                    <option value="nombre">Nombre</option>
+                    <option value="clave">Clave</option>
+                    <option value="grupo">Grupo</option>
+                    <option value="tutor">Tutor</option>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+            <a href="/nuevo" class="btn btn-add"> + Agregar Alumno</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Clave</th>
+                    <th>Nombre</th>
+                    <th>Grupo/Año</th>
+                    <th>Tutor</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% alumnos.forEach(alumno => { %>
+                <tr>
+                    <td><%= alumno.clave %></td>
+                    <td><%= alumno.nombre %></td>
+                    <td><%= alumno.grupo %> (<%= alumno.anio %>°)</td>
+                    <td><%= alumno.tutor %></td>
+                    <td>
+                        <a href="/editar/<%= alumno.clave %>" class="btn btn-edit">Editar</a>
+                        <a href="/eliminar/<%= alumno.clave %>" class="btn btn-delete" onclick="return confirm('¿Eliminar?')">Borrar</a>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
